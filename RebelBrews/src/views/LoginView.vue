@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <h1>Beeeers</h1>
+  <h1>Login</h1>
 </template>
