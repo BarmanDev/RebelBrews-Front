@@ -1,0 +1,95 @@
+@import '../assets/main.scss';
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: $yellow;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: $font-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-links a:hover {
+    color: $bone-white;
+}
+
+.navbar-logo img {
+    width: 10rem;
+}
+
+#btn-start {
+    background-color: #262425;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#btn-start:hover {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+// Estilos para el menú hamburguesa
+.navbar-icon {
+    display: none; // Oculta el icono del menú por defecto
+}
+
+@media (max-width: 844px) {
+    .navbar-links {
+      display: flex;
+      flex-direction: column;
+    }
+    
+
+    .navbar-icon {
+        display: block; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar-links {
+        display: flex;
+      flex-direction: column;
+      }
+
+   
+
+    .navbar-icon {
+        display: block; 
+    }
+}
+
+@media (min-width: 1440px) {
+    .navbar-links {
+        display: flex; 
+    }
+
+    .navbar-icon {
+        display: none; 
+    }
+}
