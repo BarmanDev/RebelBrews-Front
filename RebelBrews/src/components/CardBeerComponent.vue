@@ -1,13 +1,13 @@
 <template>
     <div class="beer-card">
         <div class="img-beer">
-            <img :src="beer.image_url" alt="Beer Image" v-if="beer.image_url" />
+            <img :src="beer?.image_url" alt="Beer Image" v-if="beer?.image_url" />
         </div>
         <div class="title-beer">
-            <h2>{{ beer.name }}</h2>
+            <h2>{{ beer?.name }}</h2>
         </div>
     </div>
-   </template>
+</template>
    
    <script setup lang="ts">
    import { defineProps } from 'vue';

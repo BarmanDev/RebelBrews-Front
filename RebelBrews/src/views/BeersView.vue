@@ -2,30 +2,23 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import CardBeerComponent from '../components/CardBeerComponent.vue';
+import type { Beer } from '@/types/Beer'; 
 
-const beers = ref([]);
+const beers = ref<Beer[]>([]);
 const currentPage = ref(1);
-const totalPages = ref(0);
+const totalPages = ref(10); 
 
-const fetchBeers = async (page) => {
+const fetchBeers = async (page: number) => {
  try {
-    const response = await axios.get(`https://api.punkapi.com/v2/beers?page=${page}&per_page=12`);
-    beers.value = response.data.filter(beer => beer.image_url);
-    // Verificar si estamos en la última página
-    if (response.data.length < 12) {
-      // Si no hay 12 cervezas, estamos en la última página
-      totalPages.value = page;
-    } else {
-      // Si hay 12 cervezas, calculamos el total de páginas
-      totalPages.value = Math.ceil(response.data.length / 12);
-    }
+      const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=20`);
+      beers.value = response.data;
  } catch (error) {
-    console.error('Error fetching beer data:', error);
+      console.error('Error fetching beer data:', error);
  }
 };
 
 onMounted(() => {
- fetchBeers(currentPage.value);
+  fetchBeers(currentPage.value);
 });
 
 const nextPage = () => {
@@ -44,16 +37,16 @@ const prevPage = () => {
 </script>
 
 <template>
- <h1>Beeeeers</h1>
- <div class="beers-container">
-   <CardBeerComponent v-for="beer in beers" :key="beer.id" :beer="beer" />
- </div>
- <div class="pagination">
-   <button @click="prevPage" :disabled="currentPage.value === 1">Anterior</button>
-   <span>Página {{ currentPage.value }} de {{ totalPages.value }}</span>
-   <button @click="nextPage" :disabled="currentPage.value === totalPages.value">Siguiente</button>
- </div>
-</template>
+   <h1>Beeeeers</h1>
+   <div class="beers-container">
+     <CardBeerComponent v-for="beer in beers" :key="beer.id" :beer="beer" />
+   </div>
+   <div class="pagination">
+     <button @click="prevPage" :disabled="currentPage === 1">Anterior</button>
+     <span>Página {{ currentPage }} de {{ totalPages }}</span>
+     <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
+   </div>
+  </template>
 
 <style scoped lang="scss">
 .beers-container {
