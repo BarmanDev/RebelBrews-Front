@@ -2,51 +2,84 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import CardBeerComponent from '../components/CardBeerComponent.vue';
+import FilterBeerComponent from '@/components/FilterBeerComponent.vue';
 import type { Beer } from '@/types/Beer'; 
 
-const beers = ref<Beer[]>([]);
+const allBeers = ref<Beer[]>([]); 
 const currentPage = ref(1);
 const totalPages = ref(10); 
+const filteredBeers = ref<Beer[]>([]); 
 
 const fetchBeers = async (page: number) => {
  try {
-      const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=20`);
-      beers.value = response.data;
+      const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`);
+      const newBeers = response.data;
+      allBeers.value = [...allBeers.value, ...newBeers]; 
+      updateFilteredBeers(); 
  } catch (error) {
       console.error('Error fetching beer data:', error);
  }
 };
 
 onMounted(() => {
-  fetchBeers(currentPage.value);
+ fetchBeers(currentPage.value);
 });
+
+const updateFilteredBeers = () => {
+ const startIndex = (currentPage.value - 1) * 10;
+ const endIndex = startIndex + 10;
+ filteredBeers.value = allBeers.value.slice(startIndex, endIndex);
+};
 
 const nextPage = () => {
  if (currentPage.value < totalPages.value) {
     currentPage.value++;
-    fetchBeers(currentPage.value);
+    fetchBeers(currentPage.value); 
  }
 };
 
 const prevPage = () => {
  if (currentPage.value > 1) {
     currentPage.value--;
-    fetchBeers(currentPage.value);
+    fetchBeers(currentPage.value); 
  }
+};
+
+const handleSearch = (searchTerm: string) => {
+ filteredBeers.value = allBeers.value.filter(beer =>
+    beer.name.toLowerCase().includes(searchTerm.toLowerCase())
+ );
+};
+
+const handleSearchAbv = (abv: number) => {
+ filteredBeers.value = allBeers.value.filter(beer =>
+    beer.abv === abv
+ );
+};
+
+const handleSearchIbu = (ibu: number) => {
+ filteredBeers.value = allBeers.value.filter(beer =>
+    beer.ibu === ibu
+ );
+};
+
+const resetSearch = () => {
+ filteredBeers.value = allBeers.value; 
 };
 </script>
 
 <template>
    <h1>Beeeeers</h1>
    <div class="beers-container">
-     <CardBeerComponent v-for="beer in beers" :key="beer.id" :beer="beer" />
+      <FilterBeerComponent @search="handleSearch" @reset="resetSearch" @searchAbv="handleSearchAbv" @searchIbu="handleSearchIbu" />
+     <CardBeerComponent v-for="beer in filteredBeers" :key="beer.id" :beer="beer" />
    </div>
    <div class="pagination">
      <button @click="prevPage" :disabled="currentPage === 1">Anterior</button>
      <span>Página {{ currentPage }} de {{ totalPages }}</span>
      <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
    </div>
-  </template>
+ </template>
 
 <style scoped lang="scss">
 .beers-container {
