@@ -7,15 +7,16 @@ import type { Beer } from '@/types/Beer';
 
 const allBeers = ref<Beer[]>([]); 
 const currentPage = ref(1);
-const totalPages = ref(10); // Este valor debe ser el total de páginas disponibles en la API
+const totalPages = ref(10); 
 const filteredBeers = ref<Beer[]>([]); 
 
 const fetchBeers = async (page: number) => {
     try {
         const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`);
+        console.log(response.data); 
         const newBeers = response.data;
         allBeers.value = [...allBeers.value, ...newBeers];
-        updateFilteredBeers(); // Actualizamos filteredBeers con los nuevos datos
+        updateFilteredBeers(); 
     } catch (error) {
         console.error('Error fetching beer data:', error);
     }
@@ -56,24 +57,28 @@ const resetSearch = () => {
 const nextPage = () => {
     if (currentPage.value < totalPages.value) {
         currentPage.value++;
-        fetchBeers(currentPage.value); // Cargamos la siguiente página de la API
-        updateFilteredBeers(); // Actualizamos filteredBeers para la nueva página
+        fetchBeers(currentPage.value); 
+        updateFilteredBeers(); 
     }
 };
 
 const prevPage = () => {
     if (currentPage.value > 1) {
         currentPage.value--;
-        fetchBeers(currentPage.value); // Cargamos la página anterior de la API
-        updateFilteredBeers(); // Actualizamos filteredBeers para la nueva página
+        fetchBeers(currentPage.value); 
+        updateFilteredBeers(); 
     }
 };
 </script>
 
 <template>
-   <h1>Beeeeers</h1>
-   <div class="beers-container">
+   <div class="filterBeers">
       <FilterBeerComponent @search="handleSearch" @reset="resetSearch" @searchAbv="handleSearchAbv" @searchIbu="handleSearchIbu" />
+   </div>
+   <div class="titleBeers">
+      <h1>LAS CERVEZAS MÁS REBELDES</h1>
+   </div>
+   <div class="beers-container">
      <CardBeerComponent v-for="beer in filteredBeers" :key="beer.id" :beer="beer" />
    </div>
    <div class="pagination">
@@ -82,8 +87,19 @@ const prevPage = () => {
      <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
    </div>
  </template>
+ 
 
 <style scoped lang="scss">
+
+.filterBeers{
+   margin: 2rem 0;
+}
+
+.titleBeers{
+   margin: 1rem 0;
+   text-align: center;
+}
+
 .beers-container {
  display: grid;
  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -98,17 +114,17 @@ const prevPage = () => {
 }
 
 .pagination button {
- margin: 0 10px;
- padding: 10px 20px;
- background-color: #007bff;
- color: white;
- border: none;
- border-radius: 5px;
- cursor: pointer;
- transition: background-color 0.3s ease;
+   background-color: #262425;
+   color: aliceblue;
+   border-radius: 10px;
+   transition: transform 0.3s ease-in-out;
+   padding: 0.5rem 2rem;
+   margin: 2rem;
 
  &:hover {
-    background-color: #0056b3;
+   background-color: #F7BE37; 
+   color: #000; 
+   transform: scale(1.05);
  }
 
  &:disabled {
