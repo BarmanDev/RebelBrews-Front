@@ -7,64 +7,66 @@ import type { Beer } from '@/types/Beer';
 
 const allBeers = ref<Beer[]>([]); 
 const currentPage = ref(1);
-const totalPages = ref(10); 
+const totalPages = ref(10); // Este valor debe ser el total de páginas disponibles en la API
 const filteredBeers = ref<Beer[]>([]); 
 
 const fetchBeers = async (page: number) => {
- try {
-      const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`);
-      const newBeers = response.data;
-      allBeers.value = [...allBeers.value, ...newBeers]; 
-      updateFilteredBeers(); 
- } catch (error) {
-      console.error('Error fetching beer data:', error);
- }
+    try {
+        const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`);
+        const newBeers = response.data;
+        allBeers.value = [...allBeers.value, ...newBeers];
+        updateFilteredBeers(); // Actualizamos filteredBeers con los nuevos datos
+    } catch (error) {
+        console.error('Error fetching beer data:', error);
+    }
 };
 
 onMounted(() => {
- fetchBeers(currentPage.value);
+    fetchBeers(currentPage.value);
 });
 
 const updateFilteredBeers = () => {
- const startIndex = (currentPage.value - 1) * 10;
- const endIndex = startIndex + 10;
- filteredBeers.value = allBeers.value.slice(startIndex, endIndex);
-};
-
-const nextPage = () => {
- if (currentPage.value < totalPages.value) {
-    currentPage.value++;
-    fetchBeers(currentPage.value); 
- }
-};
-
-const prevPage = () => {
- if (currentPage.value > 1) {
-    currentPage.value--;
-    fetchBeers(currentPage.value); 
- }
+    const startIndex = (currentPage.value - 1) * 10;
+    const endIndex = startIndex + 10;
+    filteredBeers.value = allBeers.value.slice(startIndex, endIndex);
 };
 
 const handleSearch = (searchTerm: string) => {
- filteredBeers.value = allBeers.value.filter(beer =>
-    beer.name.toLowerCase().includes(searchTerm.toLowerCase())
- );
+    filteredBeers.value = allBeers.value.filter(beer =>
+        beer.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 };
 
 const handleSearchAbv = (abv: number) => {
- filteredBeers.value = allBeers.value.filter(beer =>
-    beer.abv === abv
- );
+    filteredBeers.value = allBeers.value.filter(beer =>
+        beer.abv === abv
+    );
 };
 
 const handleSearchIbu = (ibu: number) => {
- filteredBeers.value = allBeers.value.filter(beer =>
-    beer.ibu === ibu
- );
+    filteredBeers.value = allBeers.value.filter(beer =>
+        beer.ibu === ibu
+    );
 };
 
 const resetSearch = () => {
- filteredBeers.value = allBeers.value; 
+    filteredBeers.value = allBeers.value; 
+};
+
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+        fetchBeers(currentPage.value); // Cargamos la siguiente página de la API
+        updateFilteredBeers(); // Actualizamos filteredBeers para la nueva página
+    }
+};
+
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+        fetchBeers(currentPage.value); // Cargamos la página anterior de la API
+        updateFilteredBeers(); // Actualizamos filteredBeers para la nueva página
+    }
 };
 </script>
 
