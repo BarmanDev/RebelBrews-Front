@@ -7,43 +7,37 @@
       </div>
     </div>
   </div>
+  <div class="icon-container">
+    <div class="icon">
+      <div class="icon-wrapper">
+        <img src="../assets/icons/beers.svg" alt="Icon 1">
+        <div class="icon-text">
+          <p><strong>Destapa</strong> con los tuyos</p>
+        </div>
+      </div>
+    </div>
+    <div class="icon">
+      <div class="icon-wrapper">
+        <img src="../assets/icons/MaterialSymbolsSearch (1).svg" alt="Icon 2">
+        <div class="icon-text">
+          <p><strong>Descubre</strong> todas nuestras cervezas</p>
+        </div>
+      </div>
+    </div>
+    <div class="icon">
+      <div class="icon-wrapper">
+        <img src="../assets/icons/map.svg" alt="Icon 3">
+        <div class="icon-text">
+          <p><strong>Disfruta</strong> de los locales de tu zona</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.banner-container {
-  width: 100%;
-  height: 80vh; 
-  margin: 0 auto; 
-  overflow: hidden; 
-}
+@import '../assets/banner.scss';
+@import '../assets/iconshome.scss';
 
-.banner-image {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 
-.banner-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  display: block;
-}
-
-.banner-text {
-  position: absolute;
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white; 
-  font-size: 24px; 
-  font-weight: bold; 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-}
-
-.banner-text h1 {
-  margin: 0;
-  line-height: 1.2; 
-}
 </style>
