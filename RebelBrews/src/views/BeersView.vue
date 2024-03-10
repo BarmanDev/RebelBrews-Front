@@ -12,7 +12,7 @@ const filteredBeers = ref<Beer[]>([]);
 
 const fetchBeers = async (page: number) => {
     try {
-        const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`);
+        const response = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?page=${page}&per_page=12`);
         console.log(response.data); 
         const newBeers = response.data;
         allBeers.value = [...allBeers.value, ...newBeers];
@@ -27,8 +27,8 @@ onMounted(() => {
 });
 
 const updateFilteredBeers = () => {
-    const startIndex = (currentPage.value - 1) * 10;
-    const endIndex = startIndex + 10;
+    const startIndex = (currentPage.value - 1) * 12;
+    const endIndex = startIndex + 12;
     filteredBeers.value = allBeers.value.slice(startIndex, endIndex);
 };
 
@@ -54,11 +54,19 @@ const resetSearch = () => {
     filteredBeers.value = allBeers.value; 
 };
 
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+
 const nextPage = () => {
     if (currentPage.value < totalPages.value) {
         currentPage.value++;
         fetchBeers(currentPage.value); 
         updateFilteredBeers(); 
+        scrollToTop(); // Llama a scrollToTop
     }
 };
 
@@ -67,6 +75,7 @@ const prevPage = () => {
         currentPage.value--;
         fetchBeers(currentPage.value); 
         updateFilteredBeers(); 
+        scrollToTop(); // Llama a scrollToTop
     }
 };
 </script>

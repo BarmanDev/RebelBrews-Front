@@ -42,41 +42,6 @@ const resetSearch = () => {
 </script>
 
 <style scoped lang="scss">
-.input-box {
-   display: flex; 
-   align-items: center; 
-   width: 100%; 
-}
+@import '../assets/filterbeer.scss';
 
-.button-style {
-   background-color: #262425;
-   color: aliceblue;
-   border-radius: 10px;
-   transition: transform 0.3s ease-in-out;
-   padding: 0.5rem 2rem;
-   margin: 2rem;
-}
-
-.button-style:hover {
-   background-color: #F7BE37; 
-   color: #000; 
-   transform: scale(1.05);
-}
-
-.input-container {
-   display: flex;
-   align-items: center;
-   position: relative;
-   width: auto;
-}
-
-.input-style {
-   border-top: none;
-   border-left: none;
-   border-right: none;
-   border-bottom: 1px solid #000; 
-   margin-left: 2.5rem; 
-   height: 3rem; 
-   text-align: left; 
-}
 </style>
