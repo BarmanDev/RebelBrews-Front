@@ -5,20 +5,22 @@
             <button @click="addToFavorites" class="favorite-button">Favorito</button>
         </div>
         <div class="img-beer">
-            <img :src="beer?.image_url" alt="Beer Image" v-if="beer?.image_url" />
+            <img :src="beer.imagePath" alt="Beer Image" v-if="beer.imagePath" />
         </div>
         <div class="title-beer">
-            <h2>{{ beer?.name }}</h2>
-            <p class="beer-description">{{ truncateDescription(beer?.description, 150) }}</p>
+            <h2>{{ beer.name }}</h2>
+            <p class="beer-description">{{ beer.detail }}</p>
         </div>
         <div v-if="showTooltip" class="tooltip">
-            <p>Graduación: {{ beer?.abv }}%</p>
-            <p>Amargor: {{ beer?.ibu }} IBU</p>
-            <p>Ingredientes de Malta: {{ beer?.ingredients.malt.map(malt => malt.name).join(', ') }}</p> 
-            <p>Ingredientes de Lúpulo: {{ beer?.ingredients.hops.map(hop => hop.name).join(', ') }}</p> 
-            <p>Levadura: {{ beer?.ingredients.yeast }}</p> 
+            <p>Origen: {{ beer.origin }}</p>
+            <p>Familia: {{ beer.family }}</p>
+            <p>Estilo: {{ beer.style }}</p>
+            <p>Sub estilo: {{ beer.subStyle }}</p>
+            <p>Color: {{ beer.color }}</p>
+            <p>Graduación: {{ beer.abv }}º</p>
+            <p>Ingredientes: {{ beer.ingredients }}</p>
+            <p>Alérgenos: {{ beer.allergens }}</p>
         </div>
-
     </div>
 </template>
 
@@ -31,16 +33,12 @@ const props = defineProps({
 
 const showTooltip = ref(false);
 
-const truncateDescription = (description: string, maxLength: number) => {
-    return description.length > maxLength ? description.slice(0, maxLength) + '...' : description;
-};
-
 const toggleTooltip = () => {
     showTooltip.value = !showTooltip.value;
 };
 
 const addToFavorites = () => {
-    console.log('Agregar a favoritos:', beer.value.name);
+    console.log('Agregar a favoritos:', beer.name);
 };
 </script>
 
