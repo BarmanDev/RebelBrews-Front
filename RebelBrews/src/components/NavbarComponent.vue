@@ -6,9 +6,9 @@
         </router-link>
       </div>
       <div class="navbar-links" v-show="isMenuOpen">
-        <router-link to="/comentarios">Promociones</router-link>
+        <router-link to="/promotions">Promociones</router-link>
         <router-link to="/beers">Cervezas</router-link>
-        <router-link to="/locales">Locales</router-link>
+        <router-link to="/locales" class="navbar-link">Locales</router-link>
         <router-link to="/cerveza">Empresas</router-link>
         <router-link id="btn-start" to="/register">Comienza</router-link>
       </div>

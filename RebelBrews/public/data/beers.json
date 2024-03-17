@@ -719,21 +719,8 @@
     },
     {
         "id": 55,
-        "name": "Bourgogne Des Flandres Brune 33Cl Modelo 35",
-        "origin": "Bélgica",
-        "family": "Especial",
-        "style": "Lambic and belgian sour",
-        "subStyle": "Flanders Red Ale",
-        "color": "Roja",
-        "abv": 5,
-        "ingredients": "agua, malta de cebada torrefacta, trigo, azúcar, especias, aromas, antioxidante E300, lúpulo, levadura.",
-        "allergens": "contiene gluten.",
-        "image,Path": "./beers/bourgogne-des-flandres-brune-33cl.jpg"
-    },
-    {
-        "id": 56,
         "name": "Timmermans Kriek Black Pepper 25Cl Modelo 121",
-        "origin": "Bélgica",
+        "origin": "Escocia",
         "family": "Especial",
         "style": "Lambic and belgian sour ale",
         "subStyle": "Fruit lambic-style ale",
@@ -744,9 +731,9 @@
         "imagePath": "./beers/timmermans-kriek-black-pepper-25cl.jpg"
     },
     {
-        "id": 57,
+        "id": 56,
         "name": "Rochefort 10 Azul Trappiste 33Cl Modelo 123",
-        "origin": "Bélgica",
+        "origin": "Escocia",
         "family": "Ale",
         "style": "Strong belgian ale",
         "subStyle": "Belgium strong dark ale",
@@ -754,12 +741,12 @@
         "abv": 11.3,
         "ingredients": "agua, malta de cebada, azúcar, especias, lúpulo, levadura.",
         "allergens": "contiene gluten.",
-        "imagePath": "./beers/rochefort-10-azul-trappiste-33cl.jpg"
+        "imagePath": "./beers/rochefort-10-azul-trappistes-33cl.jpg"
     },
     {
-        "id": 58,
+        "id": 57,
         "name": "Gordon Scotch Ale 33Cl Modelo 126",
-        "origin": "Bélgica",
+        "origin": "Escocia",
         "family": "Ale",
         "style": "English and scottish strong ale",
         "subStyle": "Strong scotch ale (Wee Heavy)",
@@ -770,7 +757,7 @@
         "imagePath": "./beers/gordon-scotch-ale-33cl.jpg"
     },
     {
-        "id": 59,
+        "id": 58,
         "name": "Maredsous 6 Blonde 33Cl Modelo 12261",
         "origin": "Bélgica",
         "family": "Ale",
@@ -782,7 +769,7 @@
         "allergens": "contiene gluten.",
         "imagePath": "./beers/maredsous-6-blonde-33cl.jpg"
     },{
-        "id": 60,
+        "id": 59,
         "name": "Eggenberger Urbock 33Cl Modelo 133",
         "origin": "Austria",
         "family": "Lager/pilsner/bock",
