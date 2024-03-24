@@ -1,0 +1,68 @@
+@import '../assets/main.scss';
+
+.input-box {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    flex-wrap: wrap;
+ }
+ 
+ .button-style {
+    background-color: #262425;
+    color: aliceblue;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    padding: 0.5rem 2rem;
+    margin: 2rem auto; 
+ }
+ 
+ .button-style:hover {
+    background-color: #F7BE37; 
+    color: #000; 
+    transform: scale(1.05);
+ }
+ 
+ .input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: auto;
+    margin-bottom: 1rem; 
+ }
+ 
+ .input-style {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000; 
+    margin-left: 2.5rem; 
+    height: 3rem; 
+    text-align: left; 
+    flex-grow: 1; 
+ }
+ 
+ @media (min-width: 1440px) {
+    .input-box {
+       max-width: 1200px; 
+       margin: 0 auto; 
+    }
+ }
+ 
+ @media (min-width: 768px) and (max-width: 1024px) {
+    .input-container {
+       width: 100%;
+    }
+ }
+ 
+ @media (max-width: 844px) {
+    .input-container {
+       width: 100%; 
+    }
+ }
+ 
+ @media (min-width: 768px) {
+    .button-style {
+       margin: 2rem; 
+    }
+ }

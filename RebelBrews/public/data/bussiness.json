@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Empresa A",
+        "address": "123 Calle Principal",
+        "city": "Ciudad A",
+        "phone": "+1234567890",
+        "imagePath": "../business/1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Empresa B",
+        "address": "456 Calle Secundaria",
+        "city": "Ciudad B",
+        "phone": "+1234567891",
+        "imagePath": "../business/2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Empresa C",
+        "address": "789 Calle Terciaria",
+        "city": "Ciudad C",
+        "phone": "+1234567892",
+        "imagePath": "../business/3.jpg"
+    }
+]

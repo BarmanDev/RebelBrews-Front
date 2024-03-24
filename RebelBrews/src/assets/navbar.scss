@@ -54,20 +54,29 @@
     }
 }
 
-// Estilos para el menú hamburguesa
 .navbar-icon {
-    display: none; // Oculta el icono del menú por defecto
+    display: none; 
+    width: 4rem;
+    cursor: pointer;
 }
 
+
 @media (max-width: 844px) {
+
     .navbar-links {
       display: flex;
       flex-direction: column;
     }
     
-
+    .navbar-links a {
+        font-size: 1rem;
+    }
     .navbar-icon {
         display: block; 
+    }
+
+    .navbar-logo img {
+        width: 6rem;
     }
 }
 
@@ -77,19 +86,28 @@
       flex-direction: column;
       }
 
-   
+      .navbar-links a {
+        font-size: 1.6rem;
+    }
 
     .navbar-icon {
         display: block; 
     }
+
+    .navbar-logo img {
+        width: 9rem;
+    }
+
 }
 
 @media (min-width: 1440px) {
     .navbar-links {
         display: flex; 
+        flex-direction: row;
+        margin-left: 28rem;
     }
 
     .navbar-icon {
-        display: none; 
+        display: block; 
     }
 }
