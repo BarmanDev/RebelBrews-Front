@@ -9,7 +9,6 @@ RebelBrews es una API interna diseñada para la gestión de información relacio
 - Registro de Usuarios: Los nuevos usuarios pueden registrarse en la plataforma para acceder a funcionalidades adicionales.
 - Operaciones CRUD de Patrocinadores: Ofrece funcionalidades completas de CRUD para la gestión de patrocinadores de cervecerías, incluyendo la capacidad de ver, añadir, editar, modificar y eliminar patrocinadores.
 
-This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
