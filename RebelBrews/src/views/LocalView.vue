@@ -1,90 +1,74 @@
 <template>
-   <h1>LOCALES QUE SE VAN A VER </h1>
+    <h1>LOCALES QUE SE VAN A VER </h1>
+    <div class="business-cards-container">
+        <BusinessCard v-for="business in businesses" :key="business.id" :business="business" />
+    </div>
 </template>
-   
-   <script setup lang="ts">
-   import { ref, onMounted } from 'vue';
-   import axios from 'axios';
-   import LocalCardComponent from '@/components/CardLocalComponet.vue'; //
-   const breweries = ref([]);
-   
-   const fetchBreweries = async () => {
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import BusinessCard from '../components/CardBusinessComponent.vue';
+
+const businesses = ref([]);
+
+onMounted(async () => {
     try {
-       const response = await axios.get('https://api.openbrewerydb.org/breweries?per_page=10');
-       breweries.value = response.data;
+        const response = await axios.get('../../public/data/bussiness.json');
+        businesses.value = response.data;
     } catch (error) {
-       console.error('Error fetching breweries:', error);
+        console.error('Error loading businesses:', error);
     }
-   };
-   
-   onMounted(() => {
-    fetchBreweries();
-   });
-   </script>
-   
-   <style scoped lang="scss">
-   .breweries-container {
-       display: grid;
-       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-       grid-gap: 20px;
-       padding: 20px;
-   }
-   
-   .local-card {
-       border: 1px solid #ccc;
-       padding: 20px;
-       text-align: center;
-       position: relative;
-       transition: box-shadow 0.3s ease; 
-       border-radius: 20px;
-       width: 100%;
-       min-height: 350px;
-   }
-   
-   .promotion-title {
-      margin-top: 2rem;
-       text-align: center;
-       margin-bottom: 20px;
-   }
-   
-   .promotion-title h1 {
-       font-size: 2rem;
-       margin-bottom: 10px;
-   }
-   
-   .promotion-text {
-       font-size: 1.2rem;
-       color: #333;
-       margin-top: 10px;
-       text-align: center;
-   }
-   
-   .local-card:hover {
-       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-   }
-   
-   /* Estilos responsivos para tabletas y móviles */
-   @media (max-width: 768px) {
-       .breweries-container {
-           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-       }
-       .promotion-title h1 {
-           font-size: 1.5rem;
-       }
-       .promotion-text {
-           font-size: 1rem;
-       }
-   }
-   
-   @media (max-width: 480px) {
-       .breweries-container {
-           grid-template-columns: 1fr;
-       }
-       .promotion-title h1 {
-           font-size: 1.2rem;
-       }
-       .promotion-text {
-           font-size: 0.9rem;
-       }
-   }
-   </style>
+});
+</script>
+
+<style scoped lang="scss">
+.business-cards-container {
+    display: grid;
+    grid-gap: 20px;
+
+    grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (min-width: 1400px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #262425;
+    color: aliceblue;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    padding: 0.5rem 2rem;
+    margin: 2rem;
+
+    &:hover {
+        background-color: #F7BE37;
+        color: #000;
+        transform: scale(1.05);
+    }
+
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+}
+</style>
