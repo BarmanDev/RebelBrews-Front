@@ -1,7 +1,7 @@
 <template>
     <div class="promotion-title">
        <h1>GANA CON REBEL BREWS</h1>
-       <p class="promotion-text">¿Quieres vacaciones con RebelBreews? Regístrate y entrarás en el concurso de un viaje para dos personas y podrás conocer los locales más top de EEUU con una cata marinage en el local que tu decidas de la lista.</p>
+       <p class="promotion-text">¿Quieres vacaciones con RebelBreews? Regístrate y entrarás en el concurso de un viaje para dos personas y podrás conocer los locales más top de EEUU con una cata  en el local que tu decidas de la lista.</p>
     </div>
     <div class="breweries-container">
        <LocalCardComponent v-for="brewery in breweries" :key="brewery.id" :brewery="brewery" />
@@ -11,12 +11,13 @@
     <script setup lang="ts">
     import { ref, onMounted } from 'vue';
     import axios from 'axios';
-    import LocalCardComponent from '@/components/CardLocalComponet.vue'; //
+    import LocalCardComponent from '@/components/CardLocalComponet.vue';
+    
     const breweries = ref([]);
     
     const fetchBreweries = async () => {
      try {
-        const response = await axios.get('https://api.openbrewerydb.org/breweries?per_page=10');
+        const response = await axios.get('/api/breweries?per_page=10');
         breweries.value = response.data;
      } catch (error) {
         console.error('Error fetching breweries:', error);
@@ -37,6 +38,10 @@
         justify-content: center;
         margin-right: 2rem;
 
+    }
+
+    .promotion-text{
+        margin: 1rem 15rem;
     }
     
     .local-card {

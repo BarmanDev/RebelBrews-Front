@@ -1,5 +1,3 @@
-// src/stores/authStore.ts
-
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 
@@ -24,6 +22,7 @@ export const useAuthStore = defineStore('auth', () => {
       state.isAuthenticated = true;
     },
     logout() {
+      
       state.username = '';
       state.role = '';
       state.isAuthenticated = false;

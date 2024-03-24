@@ -6,7 +6,7 @@ import LoginView from '../views/LoginView.vue';
 import BeersView from '../views/BeersView.vue';
 import UserView from '../views/UserView.vue';
 import LocalView from '../views/LocalView.vue';
-import PromotionsView from '../views/PromotionsView.vue'; // Importa PromotionsView.vue
+import PromotionsView from '../views/PromotionsView.vue';
 
 const router = createRouter({
  history: createWebHistory(import.meta.env.BASE_URL),

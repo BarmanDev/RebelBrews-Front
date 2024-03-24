@@ -107,20 +107,19 @@ input, button {
  border-radius: 5px;
 }
 
-button {
-  background-color: #262425;
-    color: aliceblue;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    padding: 0.5rem 2rem;
-    margin: 2rem auto; 
-
+.form-login button {
+ background-color: #262425;
+ color: aliceblue;
+ border-radius: 10px;
+ transition: transform 0.3s ease-in-out;
+ padding: 0.5rem 2rem;
+ margin: 2rem auto;
 }
 
-button:hover {
-  background-color: #F7BE37; 
-    color: #000; 
-    transform: scale(1.05);
+.form-login button:hover {
+ background-color: #F7BE37;
+ color: #000;
+ transform: scale(1.05);
 }
 
 .register-link a {
